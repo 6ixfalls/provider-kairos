@@ -107,6 +107,11 @@ func BridgeCMD(toolName string) *cli.Command {
 				EnvVars: []string{"lease-dir"},
 				Usage:   "DHCP Lease directory",
 			},
+			&cli.StringSliceFlag{
+				Name:	"discovery-bootstrap-peers",
+				Usage:	"List of discovery peers to use",
+				EnvVars: []string{"EDGEVPNBOOTSTRAPPEERS"}
+			},
 		},
 		Action: bridge,
 	}
@@ -146,7 +151,7 @@ func bridge(c *cli.Context) error {
 
 	ctx := context.Background()
 
-	nc := networkConfig(token, c.String("address"), c.String("log-level"), "kairos0")
+	nc := networkConfig(token, c.String("address"), c.String("log-level"), "kairos0", c.StringSlice("discovery-bootstrap-peers"))
 
 	lvl, err := log.LevelFromString(nc.LogLevel)
 	if err != nil {
