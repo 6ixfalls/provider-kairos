@@ -110,7 +110,7 @@ func BridgeCMD(toolName string) *cli.Command {
 			&cli.StringSliceFlag{
 				Name:	"discovery-bootstrap-peers",
 				Usage:	"List of discovery peers to use",
-				EnvVars: []string{"EDGEVPNBOOTSTRAPPEERS"}
+				EnvVars: []string{"EDGEVPNBOOTSTRAPPEERS"},
 			},
 		},
 		Action: bridge,
