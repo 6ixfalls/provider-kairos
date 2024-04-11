@@ -108,8 +108,8 @@ func BridgeCMD(toolName string) *cli.Command {
 				Usage:   "DHCP Lease directory",
 			},
 			&cli.StringSliceFlag{
-				Name:	"discovery-bootstrap-peers",
-				Usage:	"List of discovery peers to use",
+				Name:    "discovery-bootstrap-peers",
+				Usage:   "List of discovery peers to use",
 				EnvVars: []string{"EDGEVPNBOOTSTRAPPEERS"},
 			},
 		},

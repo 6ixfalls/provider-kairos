@@ -20,7 +20,7 @@ import (
 	"github.com/pterm/pterm"
 )
 
-func networkConfig(token, address, loglevel, i string, peers) *edgevpnConfig.Config {
+func networkConfig(token, address, loglevel, i string, peers []string) *edgevpnConfig.Config {
 	return &edgevpnConfig.Config{
 		NetworkToken:   token,
 		Address:        address,
@@ -47,9 +47,9 @@ func networkConfig(token, address, loglevel, i string, peers) *edgevpnConfig.Con
 		},
 		Discovery: edgevpnConfig.Discovery{
 			BootstrapPeers: peers,
-			DHT:      true,
-			MDNS:     true,
-			Interval: time.Duration(120) * time.Second,
+			DHT:            true,
+			MDNS:           true,
+			Interval:       time.Duration(120) * time.Second,
 		},
 		Connection: edgevpnConfig.Connection{
 			AutoRelay:      true,
@@ -61,7 +61,7 @@ func networkConfig(token, address, loglevel, i string, peers) *edgevpnConfig.Con
 
 func startRecoveryService(ctx context.Context, token, name, address, loglevel string) error {
 
-	nc := networkConfig(token, "", loglevel, "kairosrecovery0", []int{})
+	nc := networkConfig(token, "", loglevel, "kairosrecovery0", []string{})
 
 	lvl, err := log.LevelFromString(loglevel)
 	if err != nil {
